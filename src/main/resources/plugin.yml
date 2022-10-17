@@ -9,7 +9,4 @@ website: https://nafusoft.dev/
 
 commands:
   eventassist:
-    description: EventAssist
-
-  test:
-    description: Test
+    description: EventAssistUI command

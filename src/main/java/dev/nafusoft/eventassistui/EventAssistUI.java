@@ -24,6 +24,8 @@ import dev.nafusoft.eventassistui.editor.NoActionMenuHolder;
 import dev.nafusoft.eventassistui.editor.actions.ActionOptionSetterRegistry;
 import dev.nafusoft.eventassistui.editor.listener.EditorClickEventListener;
 import dev.nafusoft.eventassistui.editor.listener.EditorInputEventListener;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -80,10 +82,16 @@ public final class EventAssistUI extends JavaPlugin implements Listener {
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         SubCommandExecutor executor = getSubCommand(args);
 
-        if (executor != null)
+        if (executor != null) {
+            if (!sender.hasPermission("eventassist.ui." + args[0])) {
+                sender.sendMessage(Component.text("You don't have permission to use this command.").color(NamedTextColor.RED));
+                return true;
+            }
+
             return executor.onCommand(sender, command, label, Arrays.copyOfRange(args, 1, args.length));
-        else
+        } else {
             return HELP_COMMAND_EXECUTOR.onCommand(sender, command, label, args);
+        }
     }
 
     @Override
