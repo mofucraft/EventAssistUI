@@ -1,0 +1,15 @@
+name: EventAssistUI
+version: '${version}'
+main: dev.nafusoft.eventassistui.EventAssistUI
+api-version: 1.19
+depend: [ EventAssistCore ]
+authors: [ Nafu Satsuki ]
+description: You can use GUI to control EventAssist.
+website: https://nafusoft.dev/
+
+commands:
+  eventassist:
+    description: EventAssist
+
+  test:
+    description: Test
