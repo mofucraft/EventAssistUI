@@ -26,6 +26,7 @@ import lombok.val;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
+import org.apache.commons.lang3.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -56,8 +57,13 @@ public class PrimitiveInputWaitAction extends BaseEventEditorAction implements C
             type = PlainTextComponentSerializer.plainText().serialize(lore.get(1))
                     .substring(PlainTextComponentSerializer.plainText().serialize(lore.get(1)).indexOf(":") + 1)
                     .trim();
+            val description = PlainTextComponentSerializer.plainText().serialize(lore.get(2))
+                    .substring(PlainTextComponentSerializer.plainText().serialize(lore.get(1)).indexOf(":") + 1)
+                    .trim();
 
             player.sendMessage(Component.text("[EventAssist] Enter option value to complete the setup!").color(NamedTextColor.GREEN));
+            if (!StringUtils.isEmpty(description))
+                player.sendMessage(Component.text("Hint!: " + description).color(NamedTextColor.YELLOW));
         }
     }
 

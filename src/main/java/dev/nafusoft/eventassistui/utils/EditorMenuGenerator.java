@@ -182,6 +182,7 @@ public class EditorMenuGenerator {
                     val loreList = new ArrayList<Component>();
                     loreList.add(Component.text("OptionName: " + actionOption.getKey()));
                     loreList.add(Component.text("OptionType: " + actionOption.getValue()));
+                    loreList.add(Component.text("Description: " + holder.getEditor().getActionBuilder().getOptionDescription(actionOption.getKey())));
                     actionOptionStackMeta.lore(loreList);
 
                     actionOptionStack.setItemMeta(actionOptionStackMeta);
