@@ -20,6 +20,7 @@ import dev.nafusoft.eventassistcore.automation.ActionOptions;
 import dev.nafusoft.eventassistui.editor.BaseEventEditorAction;
 import dev.nafusoft.eventassistui.editor.component.InventoryItemSelectAction;
 import dev.nafusoft.eventassistui.editor.component.PrimitiveInputWaitAction;
+import dev.nafusoft.eventassistui.editor.component.StringInputWaitAction;
 import lombok.val;
 import org.apache.commons.lang3.ObjectUtils;
 import org.bukkit.inventory.ItemStack;
@@ -63,6 +64,8 @@ public class ActionOptionSetterRegistry {
 
         if (type.isPrimitive()) {
             setter = PrimitiveInputWaitAction.class;
+        } else if (type == String.class) {
+            setter = StringInputWaitAction.class;
         } else if (type == ItemStack.class) {
             setter = InventoryItemSelectAction.class;
         } else {
